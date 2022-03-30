@@ -20,7 +20,7 @@ namespace TheatricalPlayersRefactoringKata
                 switch (play.Type) 
                 {
                     case "tragedy":
-                        thisAmount = 40000;
+                        thisAmount = 40000; //test comment
                         if (perf.Audience > 30) {
                             thisAmount += 1000 * (perf.Audience - 30);
                         }
