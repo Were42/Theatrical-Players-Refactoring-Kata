@@ -27,9 +27,7 @@ namespace TheatricalPlayersRefactoringKata
                         break;
                     case "comedy":
                         thisAmount = 30000;
-                        if (perf.Audience > 20) {
-                            thisAmount += 10000 + 500 * (perf.Audience - 20);
-                        }
+                        thisAmount = CalculatePrice(perf, thisAmount);
                         thisAmount += 300 * perf.Audience;
                         break;
                     default:
@@ -47,6 +45,16 @@ namespace TheatricalPlayersRefactoringKata
             result += string.Format(cultureInfo, "Amount owed is {0:C}\n", Convert.ToDecimal(totalAmount / 100));
             result += string.Format("You earned {0} credits\n", volumeCredits);
             return result;
+        }
+
+        private static int CalculatePrice(Performance perf, int thisAmount)
+        {
+            if (perf.Audience > 20)
+            {
+                thisAmount += 10000 + 500 * (perf.Audience - 20);
+            }
+
+            return thisAmount;
         }
     }
 }
