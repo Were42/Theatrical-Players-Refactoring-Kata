@@ -31,6 +31,10 @@ namespace TheatricalPlayersRefactoringKata
             return result;
         }
 
+        private static string TOHtml(string text, string tag)
+        {
+            return string.Format("<{}>{}</{}>\n", tag, text, tag);
+        }
         private static string GetCreditsString(int volumeCredits)
         {
             return string.Format("You earned {0} credits\n", volumeCredits);
