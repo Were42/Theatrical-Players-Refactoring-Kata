@@ -21,10 +21,7 @@ namespace TheatricalPlayersRefactoringKata
                 {
                     case "tragedy":
                         thisAmount = 40000; //test comment
-                        if (perf.Audience > 30)
-                        {
-                            thisAmount += 1000 * (perf.Audience - 30);
-                        }
+                        thisAmount = CalculatePrice(perf.Audience, thisAmount);
                         break;
                     case "comedy":
                         thisAmount = 30000;
@@ -50,9 +47,11 @@ namespace TheatricalPlayersRefactoringKata
 
         private static int CalculatePrice(int audience, int thisAmount)
         {
+            if (audience > 30 && thisAmount > 30000)
+            {
+                thisAmount += 1000 * (audience - 30);
 
-
-            if (audience > 20)
+            }else if (audience > 20)
             {
                 thisAmount += 10000 + 500 * (audience - 20);
             }
