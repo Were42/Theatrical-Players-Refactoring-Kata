@@ -43,8 +43,7 @@ namespace TheatricalPlayersRefactoringKata
                     thisAmount = CalculatePriceByAudience(perf.Audience, TragedyPrice);
                     break;
                 case "comedy":
-                    thisAmount = CalculatePriceByAudience(perf.Audience, ComedyPrice);
-                    thisAmount += 300 * perf.Audience;
+                    thisAmount = CalculatePriceByAudience(perf.Audience, ComedyPrice) + 300 * perf.Audience; ;
                     break;
                 default:
                     throw new Exception("unknown type: " + playType);
