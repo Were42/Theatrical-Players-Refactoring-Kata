@@ -26,9 +26,14 @@ namespace TheatricalPlayersRefactoringKata
                 result += GetSeatsString(cultureInfo, play, thisAmount, perf);
                 totalAmount += thisAmount;
             }
-            result += string.Format(cultureInfo, "Amount owed is {0:C}\n", Convert.ToDecimal(totalAmount / 100));
+            result += GetAmountString(cultureInfo, totalAmount);
             result += string.Format("You earned {0} credits\n", volumeCredits);
             return result;
+        }
+
+        private static string GetAmountString(CultureInfo cultureInfo, int totalAmount)
+        {
+            return string.Format(cultureInfo, "Amount owed is {0:C}\n", Convert.ToDecimal(totalAmount / 100));
         }
 
         private static string GetCustomerString(Invoice invoice)
