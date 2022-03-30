@@ -36,20 +36,15 @@ namespace TheatricalPlayersRefactoringKata
 
         private static int CalculatePrice(string playType, Performance perf)
         {
-            int thisAmount;
             switch (playType)
             {
                 case "tragedy":
-                    thisAmount = CalculatePriceByAudience(perf.Audience, TragedyPrice);
-                    break;
+                    return CalculatePriceByAudience(perf.Audience, TragedyPrice);
                 case "comedy":
-                    thisAmount = CalculatePriceByAudience(perf.Audience, ComedyPrice) + 300 * perf.Audience; ;
-                    break;
+                    return CalculatePriceByAudience(perf.Audience, ComedyPrice) + 300 * perf.Audience;
                 default:
                     throw new Exception("unknown type: " + playType);
             }
-
-            return thisAmount;
         }
 
         private static int CalculatePriceByAudience(int audience, int thisAmount)
