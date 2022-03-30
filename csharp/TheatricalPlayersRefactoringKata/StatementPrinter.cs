@@ -23,10 +23,10 @@ namespace TheatricalPlayersRefactoringKata
                 switch (play.Type) 
                 {
                     case "tragedy":
-                        thisAmount = CalculatePrice(perf.Audience, TragedyPrice);
+                        thisAmount = CalculatePriceByAudience(perf.Audience, TragedyPrice);
                         break;
                     case "comedy":
-                        thisAmount = CalculatePrice(perf.Audience, ComedyPrice);
+                        thisAmount = CalculatePriceByAudience(perf.Audience, ComedyPrice);
                         thisAmount += 300 * perf.Audience;
                         break;
                     default:
@@ -46,7 +46,7 @@ namespace TheatricalPlayersRefactoringKata
             return result;
         }
 
-        private static int CalculatePrice(int audience, int thisAmount)
+        private static int CalculatePriceByAudience(int audience, int thisAmount)
         {
             if (audience > 30 && thisAmount > 30000)
             {
