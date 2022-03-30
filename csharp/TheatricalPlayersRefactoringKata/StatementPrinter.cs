@@ -20,7 +20,7 @@ namespace TheatricalPlayersRefactoringKata
             {
                 var play = plays[perf.PlayID];
                 var thisAmount = 0;
-                thisAmount = CalculatePrice(play, perf);
+                thisAmount = CalculatePrice(play.Type, perf);
                 // add volume credits
                 volumeCredits += Math.Max(perf.Audience - 30, 0);
                 // add extra credit for every ten comedy attendees
@@ -35,10 +35,10 @@ namespace TheatricalPlayersRefactoringKata
             return result;
         }
 
-        private static int CalculatePrice(Play play, Performance perf)
+        private static int CalculatePrice(string playType, Performance perf)
         {
             int thisAmount;
-            switch (play.Type)
+            switch (playType)
             {
                 case "tragedy":
                     thisAmount = CalculatePriceByAudience(perf.Audience, TragedyPrice);
@@ -48,7 +48,7 @@ namespace TheatricalPlayersRefactoringKata
                     thisAmount += 300 * perf.Audience;
                     break;
                 default:
-                    throw new Exception("unknown type: " + play.Type);
+                    throw new Exception("unknown type: " + playType);
             }
 
             return thisAmount;
