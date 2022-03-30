@@ -31,6 +31,28 @@ namespace TheatricalPlayersRefactoringKata
             return result;
         }
 
+        public string PrintAsHtml(Invoice invoice, Dictionary<string, Play> plays)
+        {
+            var totalAmount = 0;
+            var volumeCredits = 0;
+            var result = TOHtml(GetCustomerString(invoice), "h1");
+            CultureInfo cultureInfo = new CultureInfo("en-US");
+
+            foreach (var perf in invoice.Performances)
+            {
+                var play = plays[perf.PlayID];
+                var thisAmount = CalculatePrice(play.Type, perf.Audience);
+
+                volumeCredits = CalculateVolumeCredits(volumeCredits, perf.Audience, play.Type);
+
+                result += GetSeatsString(cultureInfo, play, thisAmount, perf);
+                totalAmount += thisAmount;
+            }
+            result += GetAmountString(cultureInfo, totalAmount);
+            result += GetCreditsString(volumeCredits);
+            return result;
+        }
+
         private static string TOHtml(string text, string tag)
         {
             return string.Format("<{}>{}</{}>\n", tag, text, tag);
