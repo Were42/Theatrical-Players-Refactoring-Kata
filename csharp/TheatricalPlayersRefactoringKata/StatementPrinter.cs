@@ -21,13 +21,14 @@ namespace TheatricalPlayersRefactoringKata
                 {
                     case "tragedy":
                         thisAmount = 40000; //test comment
-                        if (perf.Audience > 30) {
+                        if (perf.Audience > 30)
+                        {
                             thisAmount += 1000 * (perf.Audience - 30);
                         }
                         break;
                     case "comedy":
                         thisAmount = 30000;
-                        thisAmount = CalculatePrice(perf, thisAmount);
+                        thisAmount = CalculatePrice(perf.Audience, thisAmount);
                         thisAmount += 300 * perf.Audience;
                         break;
                     default:
@@ -47,11 +48,13 @@ namespace TheatricalPlayersRefactoringKata
             return result;
         }
 
-        private static int CalculatePrice(Performance perf, int thisAmount)
+        private static int CalculatePrice(int audience, int thisAmount)
         {
-            if (perf.Audience > 20)
+
+
+            if (audience > 20)
             {
-                thisAmount += 10000 + 500 * (perf.Audience - 20);
+                thisAmount += 10000 + 500 * (audience - 20);
             }
 
             return thisAmount;
